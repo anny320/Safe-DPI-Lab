@@ -52,6 +52,7 @@ function renderCountryStep() {
   stepContainer.innerHTML = `
     <div class="step-label">Level 2 · Country Context</div>
     <div class="panel">
+      <span class="panel-icon">🌍</span>
       <h2>${country.name}</h2>
       <div class="country-stats">
         <div class="stat"><div class="label">Population</div><div class="value">${country.population}</div></div>
@@ -71,6 +72,7 @@ function renderDecisionStep(decision) {
   stepContainer.innerHTML = `
     <div class="step-label">Level 3 · Build Your DPI</div>
     <div class="panel">
+      <span class="panel-icon">🛠️</span>
       <h2>${decision.title}</h2>
       <p class="muted">${decision.prompt}</p>
       <div class="option-list">
@@ -98,6 +100,7 @@ function renderEventStep(event) {
   stepContainer.innerHTML = `
     <div class="step-label">Level 4 · Unexpected Event</div>
     <div class="panel">
+      <span class="panel-icon">⚡</span>
       <h2>${event.title}</h2>
       <div class="option-list">
         ${event.options.map(opt => `
@@ -123,6 +126,7 @@ function renderLifecycleStep(stage) {
   stepContainer.innerHTML = `
     <div class="step-label">Level 5 · Lifecycle · ${stage.title}</div>
     <div class="panel">
+      <span class="panel-icon">🔄</span>
       ${stage.questions.map(q => `
         <div style="margin-bottom:18px;">
           <p>${q.text}</p>

@@ -18,13 +18,25 @@
   </section>
 
   <div class="panel">
+    <span class="panel-icon">🎯</span>
+    <h3>What is SafeDPI Simulator?</h3>
+    <p class="muted">
+      You'll step into a real decision-making role and build a national digital system from the ground up.
+      Every choice you make — on identity verification, data storage, procurement, and oversight — shifts
+      your Trust, Inclusion, Privacy, Security, and Governance scores. The goal isn't to get every score to 100%;
+      it's to see the real trade-offs that Digital Public Infrastructure (DPI) leaders face, and to walk away with
+      a personalized Safeguards Report you can share and learn from.
+    </p>
+  </div>
+
+  <div class="panel">
     <div style="margin-bottom:16px;">
       <label class="muted">Your organization (optional)</label><br/>
-      <input id="orgInput" type="text" placeholder="e.g. Ministry of Digital Affairs" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#1d2f4a;color:#eef3f8;margin-top:6px;" />
+      <input id="orgInput" type="text" placeholder="e.g. Ministry of Digital Affairs" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,36,30,0.15);background:var(--panel-light);color:var(--text);margin-top:6px;" />
     </div>
     <div style="margin-bottom:8px;">
       <label class="muted">Your role</label><br/>
-      <select id="roleInput" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#1d2f4a;color:#eef3f8;margin-top:6px;">
+      <select id="roleInput" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,36,30,0.15);background:var(--panel-light);color:var(--text);margin-top:6px;">
         <option>Government CIO</option>
         <option>Digital ID Director</option>
         <option>Central Bank Governor</option>
@@ -42,11 +54,20 @@
 
 <script src="engine.js"></script>
 <script>
+const SCENARIO_ICONS = {
+  digital_id: "🪪",
+  health_exchange: "🏥",
+  payments: "💳",
+  education: "🎓",
+  agriculture: "🌾"
+};
+
 async function init() {
   const scenarios = await Engine.loadJSON("scenarios.json");
   const grid = document.getElementById("scenarioGrid");
   grid.innerHTML = scenarios.map(s => `
     <div class="card ${s.available ? "selectable" : "disabled"}" data-id="${s.id}" data-available="${s.available}">
+      <span class="card-icon">${SCENARIO_ICONS[s.id] || "🗂️"}</span>
       <h3>${s.name}</h3>
       <p class="meta">${s.description}</p>
       ${!s.available ? '<span class="tag">Coming soon</span>' : '<span class="tag">Available now</span>'}
