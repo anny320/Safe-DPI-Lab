@@ -1,0 +1,149 @@
+{
+  "digital_id": [
+    {
+      "id": "identity_verification",
+      "stage": "design",
+      "title": "Identity Verification",
+      "prompt": "How will citizens prove who they are?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Mandatory biometrics",
+          "tags": ["Fast onboarding", "Privacy risk"],
+          "delta": { "trust": -2, "inclusion": -8, "privacy": -15, "security": 5, "governance": 0 },
+          "risks": ["privacy_vulnerability", "exclusion"]
+        },
+        {
+          "id": "B",
+          "label": "Biometric + alternative methods",
+          "tags": ["Inclusion", "Accessibility", "Higher cost"],
+          "delta": { "trust": 5, "inclusion": 12, "privacy": 0, "security": 2, "governance": 2 },
+          "risks": []
+        },
+        {
+          "id": "C",
+          "label": "No biometrics",
+          "tags": ["Lower surveillance risk", "Fraud risk"],
+          "delta": { "trust": 2, "inclusion": 4, "privacy": 10, "security": -10, "governance": 0 },
+          "risks": ["digital_insecurity"]
+        }
+      ]
+    },
+    {
+      "id": "data_storage",
+      "stage": "design",
+      "title": "Data Storage Architecture",
+      "prompt": "Where and how will citizen data be stored?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Centralized national database",
+          "tags": ["Simpler to manage", "Single point of failure"],
+          "delta": { "trust": -3, "inclusion": 0, "privacy": -10, "security": -8, "governance": -2 },
+          "risks": ["digital_insecurity", "privacy_vulnerability"]
+        },
+        {
+          "id": "B",
+          "label": "Federated / distributed storage",
+          "tags": ["Resilient", "Complex to build"],
+          "delta": { "trust": 3, "inclusion": 0, "privacy": 8, "security": 8, "governance": 2 },
+          "risks": []
+        },
+        {
+          "id": "C",
+          "label": "Citizen-held credentials (wallet model)",
+          "tags": ["Privacy-preserving", "Requires digital literacy"],
+          "delta": { "trust": 4, "inclusion": -6, "privacy": 15, "security": 5, "governance": 3 },
+          "risks": ["exclusion"]
+        }
+      ]
+    },
+    {
+      "id": "enrollment_access",
+      "stage": "deployment",
+      "title": "Enrollment Access",
+      "prompt": "How will citizens enroll in the system?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Online-only enrollment",
+          "tags": ["Cheap", "Excludes offline populations"],
+          "delta": { "trust": -2, "inclusion": -15, "privacy": 0, "security": 2, "governance": 0 },
+          "risks": ["exclusion", "unequal_access"]
+        },
+        {
+          "id": "B",
+          "label": "Mobile enrollment units + online",
+          "tags": ["Broader reach", "Higher cost"],
+          "delta": { "trust": 4, "inclusion": 12, "privacy": 0, "security": 0, "governance": 1 },
+          "risks": []
+        },
+        {
+          "id": "C",
+          "label": "Mandatory in-person enrollment only",
+          "tags": ["High assurance", "Slow rollout"],
+          "delta": { "trust": 1, "inclusion": -5, "privacy": 2, "security": 5, "governance": 0 },
+          "risks": ["unequal_access"]
+        }
+      ]
+    },
+    {
+      "id": "procurement_model",
+      "stage": "development",
+      "title": "Procurement Model",
+      "prompt": "A vendor offers a proprietary platform. What do you choose?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Accept proprietary platform",
+          "tags": ["Faster delivery", "Vendor lock-in"],
+          "delta": { "trust": -2, "inclusion": 0, "privacy": -3, "security": 0, "governance": -10 },
+          "risks": ["vendor_lock_in", "lack_of_transparency"]
+        },
+        {
+          "id": "B",
+          "label": "Require open standards",
+          "tags": ["Transparency", "Slower negotiation"],
+          "delta": { "trust": 5, "inclusion": 0, "privacy": 2, "security": 2, "governance": 10 },
+          "risks": []
+        },
+        {
+          "id": "C",
+          "label": "Hybrid approach",
+          "tags": ["Balanced", "Negotiation complexity"],
+          "delta": { "trust": 2, "inclusion": 0, "privacy": 0, "security": 1, "governance": 4 },
+          "risks": ["vendor_lock_in"]
+        }
+      ]
+    },
+    {
+      "id": "oversight_body",
+      "stage": "operations",
+      "title": "Independent Oversight",
+      "prompt": "Will an independent body oversee the system?",
+      "options": [
+        {
+          "id": "A",
+          "label": "No independent oversight",
+          "tags": ["Faster decisions", "Accountability gap"],
+          "delta": { "trust": -8, "inclusion": 0, "privacy": -5, "security": 0, "governance": -15 },
+          "risks": ["weak_accountability", "digital_distrust"]
+        },
+        {
+          "id": "B",
+          "label": "Establish independent oversight body",
+          "tags": ["Accountability", "Slower decision-making"],
+          "delta": { "trust": 10, "inclusion": 0, "privacy": 5, "security": 0, "governance": 15 },
+          "risks": []
+        },
+        {
+          "id": "C",
+          "label": "Internal audit committee only",
+          "tags": ["Lower cost", "Limited independence"],
+          "delta": { "trust": 2, "inclusion": 0, "privacy": 1, "security": 0, "governance": 4 },
+          "risks": ["weak_accountability"]
+        }
+      ]
+    }
+  ]
+}

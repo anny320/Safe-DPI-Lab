@@ -1,0 +1,42 @@
+{
+  "trust": {
+    "label": "Trust",
+    "recommendations": [
+      "Publish regular transparency reports",
+      "Communicate breaches and incidents promptly and clearly",
+      "Create public-facing dashboards on system performance"
+    ]
+  },
+  "inclusion": {
+    "label": "Inclusion",
+    "recommendations": [
+      "Offer non-digital and assisted enrollment channels",
+      "Run targeted outreach for women and rural populations",
+      "Commission regular inclusion audits"
+    ]
+  },
+  "privacy": {
+    "label": "Privacy",
+    "recommendations": [
+      "Adopt data minimization and purpose limitation",
+      "Offer non-biometric alternatives for verification",
+      "Strengthen the data protection legal framework"
+    ]
+  },
+  "security": {
+    "label": "Security",
+    "recommendations": [
+      "Conduct independent security testing before launch",
+      "Adopt federated or distributed data architectures",
+      "Establish continuous security audit cycles"
+    ]
+  },
+  "governance": {
+    "label": "Governance",
+    "recommendations": [
+      "Introduce an independent oversight body",
+      "Require open standards in procurement",
+      "Publish clear grievance and redress mechanisms"
+    ]
+  }
+}

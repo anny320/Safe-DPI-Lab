@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulator — SafeDPI Simulator</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="logo"><a href="index.html">Safe<span>DPI</span> Simulator</a></div>
+  </header>
+
+  <div id="dashboard" class="dashboard"></div>
+  <div id="stepContainer"></div>
+</div>
+
+<script src="engine.js"></script>
+<script>
+let state = Engine.getState();
+if (!state.scenarioId) window.location.href = "scenarios.html";
+
+let countries = [], decisions = [], events = [], lifecycle = [];
+let queue = []; // ordered list of step render functions
+let stepIndex = 0;
+
+const stepContainer = document.getElementById("stepContainer");
+const dashboardEl = document.getElementById("dashboard");
+
+function refreshDashboard() {
+  renderDashboard(dashboardEl, state.scores);
+}
+
+function nextStep() {
+  stepIndex++;
+  renderCurrentStep();
+}
+
+function renderCurrentStep() {
+  if (stepIndex >= queue.length) {
+    Engine.setState(state);
+    window.location.href = "report.html";
+    return;
+  }
+  queue[stepIndex]();
+}
+
+function renderCountryStep() {
+  const country = countries[Math.floor(Math.random() * countries.length)];
+  state.countryId = country.id;
+  stepContainer.innerHTML = `
+    <div class="step-label">Level 2 · Country Context</div>
+    <div class="panel">
+      <h2>${country.name}</h2>
+      <div class="country-stats">
+        <div class="stat"><div class="label">Population</div><div class="value">${country.population}</div></div>
+        <div class="stat"><div class="label">Internet access</div><div class="value">${country.internetAccess}</div></div>
+        <div class="stat"><div class="label">Women with smartphones</div><div class="value">${country.womenWithSmartphones}</div></div>
+        <div class="stat"><div class="label">Data protection law</div><div class="value">${country.dataProtectionLaw}</div></div>
+        <div class="stat"><div class="label">Trust in government</div><div class="value">${country.trustInGovernment}</div></div>
+        <div class="stat"><div class="label">Cybersecurity maturity</div><div class="value">${country.cybersecurityMaturity}</div></div>
+      </div>
+      <p class="muted" style="margin-top:18px;">Every decision you make from here has consequences for this country's citizens.</p>
+      <button class="btn" id="beginBtn">Begin Building</button>
+    </div>`;
+  document.getElementById("beginBtn").addEventListener("click", nextStep);
+}
+
+function renderDecisionStep(decision) {
+  stepContainer.innerHTML = `
+    <div class="step-label">Level 3 · Build Your DPI</div>
+    <div class="panel">
+      <h2>${decision.title}</h2>
+      <p class="muted">${decision.prompt}</p>
+      <div class="option-list">
+        ${decision.options.map(opt => `
+          <div class="option" data-id="${opt.id}">
+            <span class="opt-letter">${opt.id}</span><strong>${opt.label}</strong>
+            <div>${opt.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  stepContainer.querySelectorAll(".option").forEach(el => {
+    el.addEventListener("click", () => {
+      const opt = decision.options.find(o => o.id === el.dataset.id);
+      Engine.applyDelta(state, opt.delta);
+      state.decisions.push({ id: decision.id, title: decision.title, optionId: opt.id, label: opt.label });
+      state.riskFlags.push(...(opt.risks || []));
+      refreshDashboard();
+      nextStep();
+    });
+  });
+}
+
+function renderEventStep(event) {
+  stepContainer.innerHTML = `
+    <div class="step-label">Level 4 · Unexpected Event</div>
+    <div class="panel">
+      <h2>${event.title}</h2>
+      <div class="option-list">
+        ${event.options.map(opt => `
+          <div class="option" data-id="${opt.id}">
+            <span class="opt-letter">${opt.id}</span><strong>${opt.label}</strong>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  stepContainer.querySelectorAll(".option").forEach(el => {
+    el.addEventListener("click", () => {
+      const opt = event.options.find(o => o.id === el.dataset.id);
+      Engine.applyDelta(state, opt.delta);
+      state.eventChoices.push({ id: event.id, title: event.title, optionId: opt.id, label: opt.label });
+      state.riskFlags.push(...(opt.risks || []));
+      refreshDashboard();
+      nextStep();
+    });
+  });
+}
+
+function renderLifecycleStep(stage) {
+  stepContainer.innerHTML = `
+    <div class="step-label">Level 5 · Lifecycle · ${stage.title}</div>
+    <div class="panel">
+      ${stage.questions.map(q => `
+        <div style="margin-bottom:18px;">
+          <p>${q.text}</p>
+          <div class="yesno" data-qid="${q.id}">
+            <button data-val="yes">Yes</button>
+            <button data-val="no">No</button>
+          </div>
+        </div>
+      `).join("")}
+      <button class="btn" id="stageContinue" disabled>Continue</button>
+    </div>`;
+
+  const answers = {};
+  stage.questions.forEach(q => {
+    const group = stepContainer.querySelector(`.yesno[data-qid="${q.id}"]`);
+    group.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        answers[q.id] = btn.dataset.val === "yes";
+        checkComplete();
+      });
+    });
+  });
+
+  function checkComplete() {
+    const allAnswered = stage.questions.every(q => answers[q.id] !== undefined);
+    document.getElementById("stageContinue").disabled = !allAnswered;
+  }
+
+  document.getElementById("stageContinue").addEventListener("click", () => {
+    stage.questions.forEach(q => {
+      state.lifecycle[q.id] = answers[q.id];
+      if (answers[q.id]) {
+        Engine.applyDelta(state, q.weight);
+      }
+    });
+    refreshDashboard();
+    nextStep();
+  });
+}
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+async function init() {
+  [countries, decisions, events, lifecycle] = await Promise.all([
+    Engine.loadJSON("countries.json"),
+    Engine.loadJSON("decisions.json"),
+    Engine.loadJSON("events.json"),
+    Engine.loadJSON("lifecycle.json")
+  ]);
+
+  const scenarioDecisions = decisions[state.scenarioId] || [];
+  const chosenEvents = shuffle(events).slice(0, 2);
+
+  queue.push(renderCountryStep);
+  scenarioDecisions.forEach(d => queue.push(() => renderDecisionStep(d)));
+  chosenEvents.forEach(e => queue.push(() => renderEventStep(e)));
+  lifecycle.forEach(stage => queue.push(() => renderLifecycleStep(stage)));
+
+  refreshDashboard();
+  renderCurrentStep();
+}
+init();
+</script>
+</body>
+</html>

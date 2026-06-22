@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SafeDPI Report</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="logo"><a href="index.html">Safe<span>DPI</span> Simulator</a></div>
+  </header>
+
+  <section class="hero">
+    <h1>SafeDPI Report</h1>
+    <p class="lead" id="resultHeadline"></p>
+  </section>
+
+  <div class="panel center">
+    <div class="muted">Final Score</div>
+    <div class="report-grade" id="finalScore">--/100</div>
+    <div class="muted" id="gradeLabel"></div>
+  </div>
+
+  <div id="dashboard" class="dashboard" style="position:static;"></div>
+
+  <div class="panel">
+    <div class="areas">
+      <div>
+        <h4>Strong Areas</h4>
+        <ul id="strongList"></ul>
+      </div>
+      <div>
+        <h4>Weak Areas</h4>
+        <ul id="weakList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Top Recommendations</h3>
+    <ul class="recommend-list" id="recommendList"></ul>
+  </div>
+
+  <div class="panel">
+    <h3>Risk Flags Raised</h3>
+    <div id="riskTags"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Your Decisions</h3>
+    <div id="decisionLog"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Share Your Result</h3>
+    <p class="muted" id="shareSummary"></p>
+    <div class="share-row">
+      <a id="whatsappShare" class="whatsapp" target="_blank">Share on WhatsApp</a>
+      <a id="emailShare" class="email">Email Report</a>
+      <a id="linkedinShare" class="linkedin" target="_blank">Share on LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="panel center">
+    <a class="btn secondary" href="scenarios.html" id="restartBtn">Run Another Simulation</a>
+  </div>
+
+  <footer class="site">Recommendations mapped to the UN DPI Safeguards Framework principles.</footer>
+</div>
+
+<script src="engine.js"></script>
+<script src="report.js"></script>
+</body>
+</html>

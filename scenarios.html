@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Choose Your DPI — SafeDPI Simulator</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="logo"><a href="index.html">Safe<span>DPI</span> Simulator</a></div>
+  </header>
+
+  <section class="hero">
+    <h1>Level 1: Choose Your DPI</h1>
+    <p class="lead">Select the digital public infrastructure you will design and deploy.</p>
+  </section>
+
+  <div class="panel">
+    <div style="margin-bottom:16px;">
+      <label class="muted">Your organization (optional)</label><br/>
+      <input id="orgInput" type="text" placeholder="e.g. Ministry of Digital Affairs" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#1d2f4a;color:#eef3f8;margin-top:6px;" />
+    </div>
+    <div style="margin-bottom:8px;">
+      <label class="muted">Your role</label><br/>
+      <select id="roleInput" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:#1d2f4a;color:#eef3f8;margin-top:6px;">
+        <option>Government CIO</option>
+        <option>Digital ID Director</option>
+        <option>Central Bank Governor</option>
+        <option>Health Ministry Digital Lead</option>
+        <option>Civil Society Advocate</option>
+        <option>Development Partner</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="scenarioGrid" class="grid"></div>
+
+  <footer class="site">SafeDPI Simulator — MVP launching with Digital ID first.</footer>
+</div>
+
+<script src="engine.js"></script>
+<script>
+async function init() {
+  const scenarios = await Engine.loadJSON("scenarios.json");
+  const grid = document.getElementById("scenarioGrid");
+  grid.innerHTML = scenarios.map(s => `
+    <div class="card ${s.available ? "selectable" : "disabled"}" data-id="${s.id}" data-available="${s.available}">
+      <h3>${s.name}</h3>
+      <p class="meta">${s.description}</p>
+      ${!s.available ? '<span class="tag">Coming soon</span>' : '<span class="tag">Available now</span>'}
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".card.selectable").forEach(card => {
+    card.addEventListener("click", () => {
+      const state = Engine.defaultState();
+      state.scenarioId = card.dataset.id;
+      state.org = document.getElementById("orgInput").value.trim();
+      state.role = document.getElementById("roleInput").value;
+      Engine.setState(state);
+      window.location.href = "simulator.html";
+    });
+  });
+}
+init();
+</script>
+</body>
+</html>

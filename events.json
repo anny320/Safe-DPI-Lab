@@ -1,0 +1,98 @@
+[
+  {
+    "id": "data_breach",
+    "title": "Data breach affects 2 million citizens.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Conceal breach",
+        "delta": { "trust": -25, "inclusion": 0, "privacy": -10, "security": -5, "governance": -15 },
+        "risks": ["lack_of_transparency", "digital_distrust"]
+      },
+      {
+        "id": "B",
+        "label": "Public disclosure",
+        "delta": { "trust": 5, "inclusion": 0, "privacy": 0, "security": 0, "governance": 5 },
+        "risks": []
+      },
+      {
+        "id": "C",
+        "label": "Independent investigation",
+        "delta": { "trust": 12, "inclusion": 0, "privacy": 3, "security": 3, "governance": 12 },
+        "risks": []
+      }
+    ]
+  },
+  {
+    "id": "civil_society_protest",
+    "title": "Civil society protests over data collection practices.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Ignore",
+        "delta": { "trust": -15, "inclusion": -10, "privacy": 0, "security": 0, "governance": -10 },
+        "risks": ["disempowerment", "digital_distrust"]
+      },
+      {
+        "id": "B",
+        "label": "Hold consultations",
+        "delta": { "trust": 6, "inclusion": 6, "privacy": 0, "security": 0, "governance": 6 },
+        "risks": []
+      },
+      {
+        "id": "C",
+        "label": "Co-design policy with civil society",
+        "delta": { "trust": 12, "inclusion": 12, "privacy": 2, "security": 0, "governance": 10 },
+        "risks": []
+      }
+    ]
+  },
+  {
+    "id": "vendor_offer",
+    "title": "A procurement vendor offers a discounted proprietary platform.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Accept",
+        "delta": { "trust": -2, "inclusion": 0, "privacy": -3, "security": 0, "governance": -10 },
+        "risks": ["vendor_lock_in"]
+      },
+      {
+        "id": "B",
+        "label": "Require open standards",
+        "delta": { "trust": 4, "inclusion": 0, "privacy": 2, "security": 1, "governance": 8 },
+        "risks": []
+      },
+      {
+        "id": "C",
+        "label": "Hybrid",
+        "delta": { "trust": 1, "inclusion": 0, "privacy": 0, "security": 0, "governance": 2 },
+        "risks": ["vendor_lock_in"]
+      }
+    ]
+  },
+  {
+    "id": "media_scrutiny",
+    "title": "Investigative journalists question the system's accessibility for rural women.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Dismiss the report",
+        "delta": { "trust": -10, "inclusion": -10, "privacy": 0, "security": 0, "governance": -5 },
+        "risks": ["unequal_access", "discrimination"]
+      },
+      {
+        "id": "B",
+        "label": "Commission an inclusion audit",
+        "delta": { "trust": 8, "inclusion": 10, "privacy": 0, "security": 0, "governance": 4 },
+        "risks": []
+      },
+      {
+        "id": "C",
+        "label": "Quietly adjust outreach budget",
+        "delta": { "trust": 1, "inclusion": 4, "privacy": 0, "security": 0, "governance": 0 },
+        "risks": []
+      }
+    ]
+  }
+]

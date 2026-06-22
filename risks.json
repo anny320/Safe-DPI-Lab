@@ -1,0 +1,21 @@
+{
+  "safety": [
+    { "id": "privacy_vulnerability", "label": "Privacy vulnerability" },
+    { "id": "digital_insecurity", "label": "Digital insecurity" },
+    { "id": "physical_insecurity", "label": "Physical insecurity" },
+    { "id": "lack_of_recourse", "label": "Lack of recourse" }
+  ],
+  "inclusion": [
+    { "id": "exclusion", "label": "Exclusion" },
+    { "id": "discrimination", "label": "Discrimination" },
+    { "id": "unequal_access", "label": "Unequal access" },
+    { "id": "disempowerment", "label": "Disempowerment" }
+  ],
+  "structural": [
+    { "id": "vendor_lock_in", "label": "Vendor lock-in" },
+    { "id": "lack_of_transparency", "label": "Lack of transparency" },
+    { "id": "weak_accountability", "label": "Weak accountability" },
+    { "id": "digital_distrust", "label": "Digital distrust" },
+    { "id": "weak_governance", "label": "Weak governance" }
+  ]
+}

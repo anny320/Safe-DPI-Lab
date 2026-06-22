@@ -1,0 +1,42 @@
+[
+  {
+    "stage": "conception",
+    "title": "Conception",
+    "questions": [
+      { "id": "consulted", "text": "Were affected communities consulted before launch?", "weight": { "trust": 6, "inclusion": 6, "governance": 4 } },
+      { "id": "hr_assessment", "text": "Was a human-rights impact assessment conducted?", "weight": { "privacy": 6, "governance": 6 } }
+    ]
+  },
+  {
+    "stage": "design",
+    "title": "Design",
+    "questions": [
+      { "id": "privacy_by_design", "text": "Was privacy-by-design applied?", "weight": { "privacy": 8, "security": 4 } },
+      { "id": "accessibility_standards", "text": "Were accessibility standards followed?", "weight": { "inclusion": 8 } }
+    ]
+  },
+  {
+    "stage": "development",
+    "title": "Development",
+    "questions": [
+      { "id": "open_source", "text": "Is the codebase open source or independently auditable?", "weight": { "governance": 6, "security": 4 } },
+      { "id": "independent_testing", "text": "Was the system independently tested before launch?", "weight": { "security": 8, "trust": 2 } }
+    ]
+  },
+  {
+    "stage": "deployment",
+    "title": "Deployment",
+    "questions": [
+      { "id": "complaint_mechanism", "text": "Is there an accessible complaint/grievance mechanism?", "weight": { "trust": 6, "governance": 6 } },
+      { "id": "public_communication", "text": "Was there clear public communication about the rollout?", "weight": { "trust": 6, "inclusion": 4 } }
+    ]
+  },
+  {
+    "stage": "operations",
+    "title": "Operations",
+    "questions": [
+      { "id": "oversight", "text": "Is there an ongoing independent oversight body?", "weight": { "governance": 8, "trust": 4 } },
+      { "id": "continuous_audits", "text": "Are continuous security and privacy audits performed?", "weight": { "security": 6, "privacy": 6 } }
+    ]
+  }
+]

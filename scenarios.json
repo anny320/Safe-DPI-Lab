@@ -1,0 +1,32 @@
+[
+  {
+    "id": "digital_id",
+    "name": "Digital ID",
+    "description": "Design and deploy a national digital identity system.",
+    "available": true
+  },
+  {
+    "id": "health_exchange",
+    "name": "National Health Exchange",
+    "description": "Coming soon.",
+    "available": false
+  },
+  {
+    "id": "payments",
+    "name": "Digital Payments System",
+    "description": "Coming soon.",
+    "available": false
+  },
+  {
+    "id": "education",
+    "name": "Education Records Platform",
+    "description": "Coming soon.",
+    "available": false
+  },
+  {
+    "id": "agriculture",
+    "name": "Agriculture Registry",
+    "description": "Coming soon.",
+    "available": false
+  }
+]

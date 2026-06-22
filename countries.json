@@ -1,0 +1,32 @@
+[
+  {
+    "id": "kijani",
+    "name": "Republic of Kijani",
+    "population": "45 million",
+    "internetAccess": "42%",
+    "womenWithSmartphones": "38%",
+    "dataProtectionLaw": "Weak",
+    "trustInGovernment": "Medium",
+    "cybersecurityMaturity": "Low"
+  },
+  {
+    "id": "valera",
+    "name": "Federation of Valera",
+    "population": "12 million",
+    "internetAccess": "67%",
+    "womenWithSmartphones": "55%",
+    "dataProtectionLaw": "Moderate",
+    "trustInGovernment": "Low",
+    "cybersecurityMaturity": "Medium"
+  },
+  {
+    "id": "soreth",
+    "name": "Kingdom of Soreth",
+    "population": "78 million",
+    "internetAccess": "29%",
+    "womenWithSmartphones": "21%",
+    "dataProtectionLaw": "None",
+    "trustInGovernment": "High",
+    "cybersecurityMaturity": "Low"
+  }
+]
