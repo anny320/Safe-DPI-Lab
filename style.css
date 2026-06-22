@@ -1,12 +1,12 @@
 :root {
-  --bg: #f4f7fb;
+  --bg: #fffaf1;
   --panel: #ffffff;
-  --panel-light: #eef4fb;
+  --panel-light: #f6f2e8;
   --accent: #18a673;
   --accent-warn: #e8a000;
   --accent-bad: #e0473b;
-  --text: #1b2433;
-  --muted: #5c6b82;
+  --text: #2a2a2a;
+  --muted: #6b6458;
   --radius: 14px;
 }
 
@@ -15,7 +15,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(160deg, #eef6ff, #f7fbf6 50%, #fff8ec);
+  background: linear-gradient(160deg, #fffaf1, #fdf7e3 50%, #fff3e0);
   color: var(--text);
   min-height: 100vh;
 }
